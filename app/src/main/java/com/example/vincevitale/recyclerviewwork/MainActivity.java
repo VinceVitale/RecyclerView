@@ -2,6 +2,7 @@ package com.example.vincevitale.recyclerviewwork;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myOnClickListener = new MyOnClickListener(this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        removedItems = new ArrayList<Integer>();
+        data = new ArrayList<DataModel>();
+
+        for(int i = 0; i < MyData.nameArray.length;i++){
+            data.add(new DataModel(
+                    MyData.nameArray[i],
+                    MyData.versionArray[i],
+                    MyData.id[i],
+                    MyData.drawableArray[i]
+            ));
+        }
+
+        adapter = new CustomAdapter(data);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -47,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void addRemovedItemToList(){
         int addItemAtListPosition = MyData.nameArray.length-removedItems.size();
+        data.add(addItemAtListPosition, new DataModel(
+                MyData.nameArray[removedItems.get(0)],
+                MyData.versionArray[removedItems.get(0)],
+                MyData.id[removedItems.get(0)],
+                MyData.drawableArray[removedItems.get(0)]
+        ));
+        adapter.notifyItemInserted(addItemAtListPosition);
+        removedItems.remove(0);
+    }
 
+    private static class MyOnClickListener implements View.OnClickListener{
+        // Slide 17
     }
 }
