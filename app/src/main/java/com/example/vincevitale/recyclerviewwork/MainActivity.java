@@ -1,5 +1,6 @@
 package com.example.vincevitale.recyclerviewwork;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
-    static View.OnClickListener myClickLinstener;
+    static View.OnClickListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
 
     @Override
@@ -82,5 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
     private static class MyOnClickListener implements View.OnClickListener{
         // Slide 17
+        private final Context context;
+
+        private MyOnClickListener(Context context){
+            this.context = context;
+        }
+
+        @Override public void onClick(View v){ removedItem(v); }
+
+        private void removedItem(View v){
+            int selectedItemPosition = recyclerView.getChildAdapterPosition(v);
+        }
     }
 }
