@@ -38,7 +38,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
 
-        view.setOnClickListener(MainActivity.myClickLinstener);
+        view.setOnClickListener(MainActivity.myOnClickListener);
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -51,7 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         ImageView imageView = holder.imageViewIcon;
 
         textViewName.setText(dataSet.get(listPosition).getName());
-        textViewVersion.setText(dataSet.get(listPosition).getName());
+        textViewVersion.setText(dataSet.get(listPosition).getVersion());
         imageView.setImageResource(dataSet.get(listPosition).getImage());
     }
 

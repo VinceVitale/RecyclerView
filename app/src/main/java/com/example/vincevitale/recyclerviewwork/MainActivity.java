@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static class MyOnClickListener implements View.OnClickListener{
-        // Slide 17
+
         private final Context context;
 
         private MyOnClickListener(Context context){
@@ -93,6 +94,18 @@ public class MainActivity extends AppCompatActivity {
 
         private void removedItem(View v){
             int selectedItemPosition = recyclerView.getChildAdapterPosition(v);
+            RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(selectedItemPosition);
+            TextView textViewName = (TextView) viewHolder.itemView.findViewById(R.id.textViewName);
+            String selectedName = (String) textViewName.getText();
+            int selectedItemId = -1;
+            for(int i = 0; i < MyData.nameArray.length;i++){
+                if(selectedName.equals(MyData.nameArray[i])){
+                    selectedItemId = MyData.id[i];
+                }
+            }
+            removedItems.add(selectedItemId);
+            data.remove(selectedItemPosition);
+            adapter.notifyItemRemoved(selectedItemPosition);
         }
     }
 }
