@@ -3,4 +3,7 @@
     <string name="android_name">Android Name</string>
     <string name="android_version">Android Version</string>
     <string name="add">Add</string>
+    <string name="overflow_menu_1">Overflow Menu 1</string>
+    <string name="overflow_menu_2">Overflow Menu 2</string>
+    <string name="overflow_menu_3">Overflow Menu 3</string>
 </resources>
